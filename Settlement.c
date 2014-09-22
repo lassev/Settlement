@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct student {
+typedef struct {
   int number;
   float amountPayed;
   float balance;
-};
-
-typedef struct student student;
+} student;
 
 float absValue(float a){
   if (a<0) {
@@ -33,8 +31,6 @@ char * whatsMyName(int i){
  }
 }
 
-
-
 int main(int arc, char*argv[]){
    int a;
   float b;
@@ -59,7 +55,7 @@ int main(int arc, char*argv[]){
       third.balance = third.amountPayed -share;
       second.balance = second.amountPayed - share;
 
-    if(first.amountPayed < second.amountPayed && first.amountPayed < third.amountPayed){
+    if(first.amountPayed <= second.amountPayed && first.amountPayed <= third.amountPayed){
      printf("%s pays %.2lf \n", whatsMyName(first.number), absValue(first.balance));
      if (second.amountPayed<=third.amountPayed){
       printf("%s %s %.2lf \n", whatsMyName(second.number), payOrReceive(second.balance), absValue(second.balance));
@@ -71,7 +67,7 @@ int main(int arc, char*argv[]){
     }
      
      
-     if(second.amountPayed < first.amountPayed && second.amountPayed < third.amountPayed){
+     if(second.amountPayed < first.amountPayed && second.amountPayed <= third.amountPayed){
       printf("%s pays %.2lf \n", whatsMyName(second.number), absValue(second.balance));
 	  if (first.amountPayed<=third.amountPayed){
 	  printf("%s %s %.2lf \n", whatsMyName(first.number), payOrReceive(first.balance), absValue(first.balance));
@@ -82,7 +78,7 @@ int main(int arc, char*argv[]){
 	  }
      }
 	  
-      if(third.amountPayed < first.amountPayed && third.amountPayed < third.amountPayed){
+      if(third.amountPayed < first.amountPayed && third.amountPayed < second.amountPayed){
       printf("%s pays %.2lf \n", whatsMyName(third.number), absValue(third.balance));
 	  if (first.amountPayed<=second.amountPayed){
 	  printf("%s %s %.2lf \n", whatsMyName(first.number), payOrReceive(first.balance), absValue(first.balance));
@@ -93,8 +89,6 @@ int main(int arc, char*argv[]){
 	  }
       }
   }
-
-  
   
   return 0;
 }
